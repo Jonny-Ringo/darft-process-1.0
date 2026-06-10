@@ -60,7 +60,6 @@ Unhandled messages remain in the inbox. Handled messages do not need manual inbo
 - `Inbox`: unhandled inbound messages.
 - `Handlers`: handler registration utilities.
 - `Send`: send a message.
-- `ao.send`: send a message through the AO helper.
 - `ao.spawn`: spawn a process.
 
 ## JSON

@@ -10,7 +10,7 @@ The `process@1.0` device exposes an AO process through HyperBEAM. A process is a
 - A handler matches messages and runs process logic.
 - The inbox keeps unhandled messages.
 - `ao.id` is the current process ID inside AOS.
-- `ao.send` and `Send` send outbound messages.
+- `Send` sends outbound messages.
 - `ao.spawn` can create a new process from a module.
 
 ## Message Shape
@@ -102,7 +102,7 @@ Send({
 From another process:
 
 ```lua
-ao.send({
+Send({
   Target = "<target-process-id>",
   Action = "Notify",
   Data = "hello"
