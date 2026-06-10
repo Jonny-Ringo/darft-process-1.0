@@ -1,8 +1,8 @@
 # @PROCESS1.0 Device
 
-This section is a compressed Markdown version of the AO Cookbook material, rewritten around the HyperBEAM `process@1.0` device surface.
+This section covers the HyperBEAM `process@1.0` device surface.
 
-Use these docs when you need to spawn or connect to AO processes, send messages, expose process state over HTTP, and migrate older Legacynet code into the HyperBEAM model.
+Use it to spawn or connect to AO processes, send messages, expose process state over HTTP, and migrate older Legacynet code into the HyperBEAM model.
 
 ## Default Path
 
@@ -23,7 +23,7 @@ Common operations:
 
 ## Node Selection
 
-Examples in this section may use `https://push.forward.computer` because it appears in upstream docs and release notes. Treat it only as an example node.
+Examples in this section may use `https://push.forward.computer`. Treat it only as an example node.
 
 For real use, select a current HyperBEAM node from `https://lunat.arweave.net` or another marketplace/listing source. Use the selected node's URL for `--url`, `URL`, and read endpoints. Use that node's advertised authority address when a workflow asks for `authority` or `HYPERBEAM_AUTHORITY`.
 
@@ -38,8 +38,8 @@ For real use, select a current HyperBEAM node from `https://lunat.arweave.net` o
 7. Use the migration guide for older processes.
 8. Keep Legacynet-only material in the final appendix.
 
-## What Was Removed Or Compressed
+## Scope
 
-The original cookbook site included VitePress config, multilingual copies, images, videos, long tutorials, and older examples. This section keeps the English technical core and compresses tutorials into reusable patterns.
+This section focuses on the English technical core for `process@1.0`: process creation, messages, state exposure, reads, AO Connect, and migration.
 
-Legacynet-specific items are not mixed into the main flow. They live in [90. Legacynet Appendix](90-legacynet-appendix.md).
+Legacynet-specific items are separate from the main flow. They live in [90. Legacynet Appendix](90-legacynet-appendix.md).

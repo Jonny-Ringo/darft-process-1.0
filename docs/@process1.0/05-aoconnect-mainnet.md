@@ -1,6 +1,6 @@
 # AO Connect Mainnet
 
-This page applies the AO Connect and AOS mainnet release-note update to the `@PROCESS1.0` section.
+Use AO Connect to spawn, message, and read results from `process@1.0` processes on HyperBEAM mainnet.
 
 Install:
 
@@ -8,7 +8,7 @@ Install:
 npm install @permaweb/aoconnect
 ```
 
-The release note references `@permaweb/aoconnect@0.0.93` for the mainnet-capable workflow. Use the current package version available in your project lockfile or registry, but keep the API shape below for HyperBEAM mainnet docs.
+The mainnet release note references `@permaweb/aoconnect@0.0.93` for the first mainnet-capable workflow. Use the current package version available in your project lockfile or registry.
 
 ## Mainnet Connect Flow
 
@@ -98,7 +98,7 @@ const pushed = await request({
 });
 ```
 
-Use `ao.message` for normal app messages and reach for `request` when documenting device-specific paths.
+Use `ao.message` for normal app messages and reach for `request` when you need to call device-specific paths.
 
 ## AOS Mainnet CLI
 

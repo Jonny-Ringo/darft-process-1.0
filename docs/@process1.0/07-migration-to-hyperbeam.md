@@ -1,6 +1,6 @@
 # Migration To HyperBEAM
 
-Use this page to move old AO or Legacynet docs and code into the HyperBEAM-first `@PROCESS1.0` model.
+Use this page to move old AO or Legacynet processes and clients into the HyperBEAM-first `@PROCESS1.0` model.
 
 ## Main Change
 
@@ -12,7 +12,7 @@ const balances = await fetch(
 ).then((res) => res.json());
 ```
 
-The process still mutates state through messages. The difference is that read-facing state is patched and read through HTTP. Historical read simulations belong in [90. Legacynet Appendix](90-legacynet-appendix.md).
+The process still mutates state through messages. The difference is that read-facing state is patched and read through HTTP. Use historical read simulations only when supporting existing Legacynet processes.
 
 ## Step 1: Connect To HyperBEAM
 
@@ -105,10 +105,10 @@ Avoid relying on names like `ExampleTag` when casing normalization could affect 
 
 - HyperBEAM node selected from a current list.
 - AOS connects with `--url`.
-- No hard-coded Legacynet MU/CU URLs in main docs.
+- Remove hard-coded Legacynet MU/CU URLs.
 - No legacy read simulations in the primary read path.
 - Public state is patched with lowercase keys.
 - Mutating handlers patch after successful state changes.
 - Client reads use `process@1.0/compute`.
 - Aggregates use dynamic reads.
-- `--legacy` instructions are moved to the Legacynet appendix.
+- Use `--legacy` only for existing Legacynet processes.

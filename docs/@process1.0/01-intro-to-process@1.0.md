@@ -140,4 +140,4 @@ For local development, start HyperBEAM with the profile your environment require
 aos --url http://localhost:8734 myLocalProcess
 ```
 
-The upstream cookbook commonly references a `genesis_wasm` profile for local AOS execution. Treat the exact local boot command as environment-specific and keep your public docs focused on the selected node URL.
+The upstream cookbook commonly references a `genesis_wasm` profile for local AOS execution. Treat the exact local boot command as environment-specific and keep the selected node URL explicit.

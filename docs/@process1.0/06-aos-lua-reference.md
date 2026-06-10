@@ -1,6 +1,6 @@
 # AOS Lua Reference
 
-This page keeps the AOS essentials close to the HyperBEAM docs without reproducing the full cookbook.
+This page covers the AOS essentials used throughout the `process@1.0` examples.
 
 ## Install And Start
 
@@ -35,7 +35,7 @@ Load a blueprint:
 .load-blueprint chat
 ```
 
-Blueprints are templates for common process patterns such as chat, token, staking, and voting. Treat older CRED-related blueprints as Legacynet-only.
+Blueprints are templates for common process patterns such as chat, token, staking, and voting.
 
 ## Handlers
 

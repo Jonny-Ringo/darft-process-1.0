@@ -1,6 +1,6 @@
 # Building Patterns
 
-These are compressed patterns from the cookbook examples. They are meant to be copied into real processes and adapted around the `process@1.0` read model.
+These patterns can be copied into real processes and adapted around the `process@1.0` read model.
 
 ## Token State
 
@@ -199,4 +199,4 @@ Read path:
 http://localhost:8734/<process-id>~process@1.0/now
 ```
 
-For public docs, label this as an advanced or experimental pattern until the deployment environment is pinned.
+Use this as an advanced or experimental pattern until the deployment environment is pinned.

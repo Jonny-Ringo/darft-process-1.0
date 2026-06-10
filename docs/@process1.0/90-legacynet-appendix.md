@@ -1,6 +1,6 @@
 # Legacynet Appendix
 
-This appendix preserves older AO Cookbook material that should not be part of the primary HyperBEAM flow.
+This appendix is for older AO patterns that still matter when supporting existing Legacynet processes.
 
 Use this only when supporting existing Legacynet processes.
 
@@ -8,14 +8,14 @@ Use this only when supporting existing Legacynet processes.
 
 - You are connecting to an existing legacy process.
 - A process or tutorial explicitly requires old MU/CU/SU endpoints.
-- You are documenting historical CRED, WeaveDrive-on-Legacynet, or deprecated dry-run examples.
+- You need WeaveDrive-on-Legacynet or deprecated dry-run examples.
 - You are migrating a process and need to understand old behavior.
 
-For new work, use HyperBEAM mainnet docs in the earlier pages.
+For new work, use HyperBEAM mainnet.
 
 ## AOS Legacy Flag
 
-Mainnet AOS defaults to HyperBEAM. To create or connect through the legacy path, use `--legacy` only in legacy docs:
+Mainnet AOS defaults to HyperBEAM. To create or connect through the legacy path, use `--legacy`:
 
 ```sh
 aos <legacy-process-id> --wallet ./wallet.json --legacy
@@ -38,7 +38,7 @@ const { result, results, message, spawn, monitor, unmonitor, dryrun } =
   });
 ```
 
-Keep this pattern in legacy support docs only. The HyperBEAM mainnet docs should use:
+This is a Legacynet pattern. For HyperBEAM mainnet, connect with:
 
 ```js
 connect({
@@ -60,7 +60,7 @@ Legacynet MU authority:
 fcoN_xJeisVsPXA-trzVAuIiqO3ydLQxM-L4XbrQKzY
 ```
 
-Do not place these constants in the `process@1.0` intro or HyperBEAM mainnet pages. Mainnet examples should use the selected HyperBEAM node authority and the current scheduler flow.
+These constants are Legacynet-only. For mainnet, use the selected HyperBEAM node authority and the current scheduler flow.
 
 ## Dry Run
 
@@ -75,26 +75,15 @@ const result = await dryrun({
 });
 ```
 
-In HyperBEAM docs, replace this with state exposure:
+For HyperBEAM, expose state via the [`patch@1.0` device]() and read it through:
 
 ```text
 GET /<process-id>~process@1.0/compute/<key>
 ```
 
-## CRED
-
-CRED was a Legacynet-era token used for early developer rewards. It is not a primary HyperBEAM workflow and should stay in legacy or historical docs.
-
-Legacy blueprint usage:
-
-```lua
-.load-blueprint credUtils
-CRED.balance
-```
-
 ## WeaveDrive
 
-The cookbook WeaveDrive snack was written for AO Legacynet. Keep it out of HyperBEAM-first onboarding unless a current HyperBEAM replacement is documented.
+The cookbook WeaveDrive snack was written for AO Legacynet. Use it only for existing Legacynet processes unless a current HyperBEAM replacement is available.
 
 Historical setup included:
 
@@ -113,4 +102,4 @@ Older release notes are useful for history, not primary onboarding:
 - AOS v2.0.8 added SDK mode and token blueprint state-cache support.
 - AOS v2.0.9 improved forward.computer integration and reverted a deduplication feature.
 
-For the main docs, use the current AO Connect mainnet flow from [05. AO Connect Mainnet](05-aoconnect-mainnet.md).
+For the current mainnet flow, use [05. AO Connect Mainnet](05-aoconnect-mainnet.md).

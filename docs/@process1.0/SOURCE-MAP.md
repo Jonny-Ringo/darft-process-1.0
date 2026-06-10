@@ -39,7 +39,6 @@ This section was compressed from the AO Cookbook source tree and the AO Connect 
 - `src/guides/aoconnect/connecting.md`
 - Legacy portions of `src/guides/aoconnect/spawning-processes.md`
 - `src/references/deprecated/dry-run.md`
-- `src/guides/aos/blueprints/cred-utils.md`
 - `src/guides/snacks/weavedrive.md`
 - Historical AOS release notes that are not the current HB-first flow
 
