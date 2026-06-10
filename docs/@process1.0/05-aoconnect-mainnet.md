@@ -1,0 +1,136 @@
+# AO Connect Mainnet
+
+This page applies the AO Connect and AOS mainnet release-note update to the `@PROCESS1.0` section.
+
+Install:
+
+```sh
+npm install @permaweb/aoconnect
+```
+
+The release note references `@permaweb/aoconnect@0.0.93` for the mainnet-capable workflow. Use the current package version available in your project lockfile or registry, but keep the API shape below for HyperBEAM mainnet docs.
+
+## Mainnet Connect Flow
+
+```js
+import { connect, createSigner } from "@permaweb/aoconnect";
+import fs from "node:fs";
+
+const jwk = JSON.parse(fs.readFileSync("wallet.json", "utf-8"));
+
+// Example only. Pick a current node from https://lunat.arweave.net
+// or another marketplace/listing source.
+const HYPERBEAM_URL = "https://<hyperbeam-node>";
+
+// Use the authority address advertised by your selected node.
+const HYPERBEAM_AUTHORITY = "<hyperbeam-node-authority>";
+
+// Default scheduler from the mainnet release notes.
+const HYPERBEAM_SCHEDULER =
+  "n_XZJhUnmldNFo4dhajoPZWhBXuJk-OcQr5JQ49c4Zo";
+
+// Current AOS module from the mainnet release notes.
+const AOS_MODULE = "ISShJH1ij-hPPt9St5UFFr_8Ys3Kj5cyg7zrMGt7H9s";
+
+const ao = connect({
+  MODE: "mainnet",
+  URL: HYPERBEAM_URL,
+  SCHEDULER: HYPERBEAM_SCHEDULER,
+  signer: createSigner(jwk),
+});
+```
+
+## Spawn
+
+```js
+const process = await ao.spawn({
+  authority: HYPERBEAM_AUTHORITY,
+  module: AOS_MODULE,
+  data: "1984",
+  tags: [{ name: "Example-Tag", value: "Example Value" }],
+});
+```
+
+Use dash-separated tag names. Avoid relying on mixed-case tag names such as `ExampleTag`; HyperBEAM may normalize tag casing and older handlers can miss the tag.
+
+## Message
+
+```js
+const message = await ao.message({
+  process,
+  data: "1984",
+  tags: [{ name: "Example-Tag", value: "Example Value" }],
+});
+```
+
+## Result
+
+```js
+const result = await ao.result({
+  process,
+  message,
+});
+```
+
+Results can include:
+
+- `Messages`: outbound messages produced by the process.
+- `Spawns`: spawned process outputs.
+- `Output`: console or evaluation output.
+- `Error`: evaluation error data.
+
+## Direct Request Path
+
+Some HyperBEAM workflows use `request` for explicit `process@1.0` paths:
+
+```js
+const { request } = connect({
+  MODE: "mainnet",
+  URL: HYPERBEAM_URL,
+  signer: createSigner(jwk),
+});
+
+const pushed = await request({
+  path: `/${processId}~process@1.0/push/serialize~json@1.0`,
+  method: "POST",
+  target: processId,
+  signingFormat: "ANS-104",
+});
+```
+
+Use `ao.message` for normal app messages and reach for `request` when documenting device-specific paths.
+
+## AOS Mainnet CLI
+
+Install:
+
+```sh
+npm install -g https://get_ao.arweave.net
+```
+
+Connect to a selected node:
+
+```sh
+aos <process-id> --url https://<hyperbeam-node>
+```
+
+Mainnet flags:
+
+- `--url`: HyperBEAM node URL. If omitted, AOS defaults to a HyperBEAM mainnet node.
+- `--scheduler`: HyperBEAM scheduler address. If omitted, the release-note default is `n_XZJhUnmldNFo4dhajoPZWhBXuJk-OcQr5JQ49c4Zo`.
+
+## Browser Signer
+
+For browser wallets, keep the same mainnet connection shape and pass the browser signer supported by your wallet integration:
+
+```js
+import { connect, createSigner } from "@permaweb/aoconnect";
+
+const ao = connect({
+  MODE: "mainnet",
+  URL: "https://<hyperbeam-node>",
+  signer: createSigner(globalThis.arweaveWallet),
+});
+```
+
+Confirm the wallet adapter supports the signing format required by the target AO Connect version.

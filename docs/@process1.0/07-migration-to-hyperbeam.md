@@ -1,0 +1,114 @@
+# Migration To HyperBEAM
+
+Use this page to move old AO or Legacynet docs and code into the HyperBEAM-first `@PROCESS1.0` model.
+
+## Main Change
+
+Primary HyperBEAM read pattern:
+
+```js
+const balances = await fetch(
+  `https://<hyperbeam-node>/${processId}~process@1.0/compute/balances`,
+).then((res) => res.json());
+```
+
+The process still mutates state through messages. The difference is that read-facing state is patched and read through HTTP. Historical read simulations belong in [90. Legacynet Appendix](90-legacynet-appendix.md).
+
+## Step 1: Connect To HyperBEAM
+
+```sh
+aos --url https://<hyperbeam-node>
+```
+
+The node URL is a deployment choice. Pick a current node from `https://lunat.arweave.net` or another marketplace/listing source.
+
+## Step 2: Add Initial Patches
+
+```lua
+Balances = Balances or {}
+TotalSupply = TotalSupply or "0"
+InitialSync = InitialSync or "INCOMPLETE"
+
+if InitialSync == "INCOMPLETE" then
+  Send({
+    device = "patch@1.0",
+    balances = Balances,
+    totalsupply = TotalSupply
+  })
+
+  InitialSync = "COMPLETE"
+end
+```
+
+## Step 3: Patch In Mutating Handlers
+
+```lua
+local function patchPublicState()
+  Send({
+    device = "patch@1.0",
+    balances = Balances,
+    totalsupply = TotalSupply
+  })
+end
+
+Handlers.add(
+  "Mint",
+  Handlers.utils.hasMatchingTag("Action", "Mint"),
+  function(msg)
+    local amount = tonumber(msg.Tags.Amount)
+    local recipient = msg.Tags.Recipient
+
+    if not amount or amount <= 0 or not recipient then
+      return msg.reply({ Error = "Invalid mint" })
+    end
+
+    Balances[recipient] = tostring((tonumber(Balances[recipient]) or 0) + amount)
+    TotalSupply = tostring((tonumber(TotalSupply) or 0) + amount)
+
+    patchPublicState()
+    return msg.reply({ Status = "OK" })
+  end
+)
+```
+
+## Step 4: Replace Client Reads
+
+```js
+const balances = await fetch(
+  `https://<hyperbeam-node>/${processId}~process@1.0/compute/balances`,
+).then((res) => res.json());
+
+const balance = balances[address] || "0";
+```
+
+## Step 5: Use Dynamic Reads For Aggregates
+
+If the client used dry-runs to compute totals, rankings, filtered views, or derived state, move the computation into a Lua dynamic read:
+
+```text
+/<process-id>~process@1.0/now/~lua@5.3a&module=<script-tx-id>/<function>/serialize~json@1.0
+```
+
+## Step 6: Update Tags
+
+Audit handlers that rely on exact mixed-case tag names. Prefer:
+
+```lua
+Handlers.utils.hasMatchingTag("Action", "Transfer")
+msg.Tags["Request-Id"]
+msg.Tags["Transfer-Id"]
+```
+
+Avoid relying on names like `ExampleTag` when casing normalization could affect routing.
+
+## Migration Checklist
+
+- HyperBEAM node selected from a current list.
+- AOS connects with `--url`.
+- No hard-coded Legacynet MU/CU URLs in main docs.
+- No legacy read simulations in the primary read path.
+- Public state is patched with lowercase keys.
+- Mutating handlers patch after successful state changes.
+- Client reads use `process@1.0/compute`.
+- Aggregates use dynamic reads.
+- `--legacy` instructions are moved to the Legacynet appendix.
