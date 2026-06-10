@@ -41,6 +41,8 @@ Keep tag values as strings unless a process explicitly documents otherwise.
 
 For process-to-process messages to be accepted, the recipient process must trust the authority used by the incoming message. In practice, processes that talk to each other should use the same HyperBEAM authority or compatible authority sets. If the recipient does not have the authority, it can reject the message.
 
+# Using AOS
+
 ## Prerequisites
 
 - Node.js 20 or newer.
