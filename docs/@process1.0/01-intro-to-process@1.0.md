@@ -1,6 +1,10 @@
-# HyperBEAM Quickstart
+# Intro to `process@1.0` & Processes
 
-Use this page to create a process, send it a message, and read exposed state through the `process@1.0` device.
+AO has many devices. Among them, the `process@1.0` device is the one you use to create and interact with "smart contracts" called processes.
+
+A process is a deterministic log of state transitions stored on Arweave. Messages add inputs to that log, the process evaluates those messages, and HyperBEAM makes selected process data available through endpoints.
+
+Use this page to create a process, load a small counter, send it a message, and read exposed state through the `process@1.0` device.
 
 ## Prerequisites
 
@@ -54,6 +58,8 @@ Alternatively, save the code below to an `example.lua` file and load it with:
 ```lua
 .load path/to/example.lua
 ```
+
+Note: The [`patch@1.0` device]() pushes selected process data to HyperBEAM endpoints so clients can discover and fetch it. In this example, the `counter`, `lastupdate`, and `updatedby` keys become readable through the process endpoint.
 
 ```lua
 Counter = Counter or 0

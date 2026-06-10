@@ -1,7 +1,7 @@
 # @PROCESS1.0 Section Summary
 
 - [Overview](index.md)
-- [01. HyperBEAM Quickstart](01-hyperbeam-quickstart.md)
+- [01. Intro to process@1.0 & Processes](01-intro-to-process@1.0.md)
 - [02. Process Model](02-process-model.md)
 - [03. State And Reads](03-state-and-reads.md)
 - [04. Building Patterns](04-building-patterns.md)

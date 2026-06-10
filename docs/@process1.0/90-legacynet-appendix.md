@@ -60,7 +60,7 @@ Legacynet MU authority:
 fcoN_xJeisVsPXA-trzVAuIiqO3ydLQxM-L4XbrQKzY
 ```
 
-Do not place these constants in HyperBEAM quickstarts. Mainnet examples should use the selected HyperBEAM node authority and the current scheduler flow.
+Do not place these constants in the `process@1.0` intro or HyperBEAM mainnet pages. Mainnet examples should use the selected HyperBEAM node authority and the current scheduler flow.
 
 ## Dry Run
 

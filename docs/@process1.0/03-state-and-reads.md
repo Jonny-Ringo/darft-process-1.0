@@ -4,6 +4,8 @@ HyperBEAM changes the default AO read pattern. Instead of sending dry-run messag
 
 ## Patch Device
 
+The [`patch@1.0` device]() pushes selected process data to HyperBEAM endpoints so it can be discovered and fetched by clients. Each key sent to the patch device becomes readable through the process endpoint.
+
 Patch selected state:
 
 ```lua

@@ -29,7 +29,7 @@ For real use, select a current HyperBEAM node from `https://lunat.arweave.net` o
 
 ## Section Order
 
-1. Start with the quickstart.
+1. Start with the `process@1.0` and processes intro.
 2. Learn the process/message/handler model.
 3. Use state exposure and dynamic reads for fast reads.
 4. Build practical patterns on top.
