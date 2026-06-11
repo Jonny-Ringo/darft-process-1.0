@@ -62,11 +62,6 @@ npm i -g https://get_ao.arweave.net
 aos process_name --url http://localhost:8734
 ```
 
-Example:
-
-```sh
-aos counter --url https://push.forward.computer
-```
 
 Replace `process_name` with a friendly local name for the process, such as `counter`. Reuse the same `aos process_name --url https://node.url` command to re-enter the process console after exiting. If you omit `--url https://node.url`, the current AOS mainnet release defaults to a HyperBEAM node like `push.forward.computer`. Passing `--url https://node.url` keeps the selected node explicit as the executor of the process.
 
@@ -138,11 +133,6 @@ Use your selected node and process ID:
 curl http://localhost:8734/<process-id>~process@1.0/compute/counter
 ```
 
-Example:
-
-```sh
-curl https://push.forward.computer/<process-id>~process@1.0/compute/counter
-```
 
 The response is the patched `counter` value. This is the core HyperBEAM read pattern: mutate process state through messages, then expose selected read state over HTTP.
 
@@ -176,7 +166,7 @@ end
 For local development, start HyperBEAM with the profile your environment requires, then point AOS at it:
 
 ```sh
-aos --url http://localhost:8734 myLocalProcess
+aos myLocalProcess --url http://localhost:8734 
 ```
 
 The upstream cookbook commonly references a `genesis_wasm` profile for local AOS execution. Treat the exact local boot command as environment-specific and keep the selected node URL explicit.
