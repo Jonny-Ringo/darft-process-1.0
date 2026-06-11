@@ -40,6 +40,12 @@ const ao = connect({
 });
 ```
 
+You can retrieve a node's authority address from its metadata endpoint:
+
+```sh
+curl "https://<hyperbeam-node>/~meta@1.0/info/address"
+```
+
 ## Spawn
 
 ```js
