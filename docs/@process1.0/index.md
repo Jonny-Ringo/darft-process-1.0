@@ -11,7 +11,7 @@ HyperBEAM is the primary path for new `@PROCESS1.0` work.
 The important URL shape is:
 
 ```text
-https://<hyperbeam-node>/<process-id>~process@1.0/<operation>
+http://localhost:8734/<process-id>~process@1.0/<operation>
 ```
 
 Common operations:
@@ -24,7 +24,7 @@ Common operations:
 
 Examples in this section may use `https://push.forward.computer`. Treat it only as an example node.
 
-For real use, select a current HyperBEAM node from `https://lunar.arweave.net` or another marketplace/listing source. Use the selected node's URL for `--url`, `URL`, and read endpoints. Use that node's advertised authority address when a workflow asks for `authority` or `HYPERBEAM_AUTHORITY`.
+For real use, select a current HyperBEAM node from `https://lunar.arweave.net` or another marketplace/listing source. Use the selected node's URL for `--url`, and read endpoints. Use that node's advertised authority address when a workflow asks for `authority` or `HYPERBEAM_AUTHORITY`.
 
 ## Section Order
 

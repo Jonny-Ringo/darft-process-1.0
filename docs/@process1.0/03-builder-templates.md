@@ -65,7 +65,7 @@ Client read:
 
 ```js
 const balances = await fetch(
-  `https://<hyperbeam-node>/${processId}~process@1.0/compute/balances`,
+  `http://localhost:8734/${processId}~process@1.0/compute/balances`,
 ).then((res) => res.json());
 ```
 
@@ -111,7 +111,7 @@ Handlers.add(
 Read latest patched messages:
 
 ```sh
-curl https://<hyperbeam-node>/<process-id>~process@1.0/compute/messages
+curl http://localhost:8734/<process-id>~process@1.0/compute/messages
 ```
 
 ## Frontend Client
@@ -198,7 +198,7 @@ Send({
 Read path:
 
 ```text
-https://<hyperbeam-node>/<process-id>~process@1.0/compute/web
+http://localhost:8734/<process-id>~process@1.0/compute/web
 ```
 
 For multi-file experiences, patch separate keys such as `html`, `css`, and `js`, or store larger assets on Arweave and patch an index of asset IDs.

@@ -8,7 +8,7 @@ Primary HyperBEAM read pattern:
 
 ```js
 const balances = await fetch(
-  `https://<hyperbeam-node>/${processId}~process@1.0/compute/balances`,
+  `http://localhost:8734/${processId}~process@1.0/compute/balances`,
 ).then((res) => res.json());
 ```
 
@@ -17,7 +17,7 @@ The process still mutates state through messages. The difference is that read-fa
 ## Step 1: Connect To HyperBEAM
 
 ```sh
-aos --url https://<hyperbeam-node>
+aos --url http://localhost:8734
 ```
 
 The node URL is a deployment choice. Pick a current node from `https://lunar.arweave.net` or another marketplace/listing source.
@@ -75,7 +75,7 @@ Handlers.add(
 
 ```js
 const balances = await fetch(
-  `https://<hyperbeam-node>/${processId}~process@1.0/compute/balances`,
+  `http://localhost:8734/${processId}~process@1.0/compute/balances`,
 ).then((res) => res.json());
 
 const balance = balances[address] || "0";

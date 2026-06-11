@@ -26,7 +26,7 @@ GET /<process-id>~process@1.0/compute/status
 With a node:
 
 ```sh
-curl https://<hyperbeam-node>/<process-id>~process@1.0/compute/counter
+curl http://localhost:8734/<process-id>~process@1.0/compute/counter
 ```
 
 ## Initial Sync

@@ -20,7 +20,7 @@ const jwk = JSON.parse(fs.readFileSync("wallet.json", "utf-8"));
 
 // Example only. Pick a current node from https://lunar.arweave.net
 // or another marketplace/listing source.
-const HYPERBEAM_URL = "https://<hyperbeam-node>";
+const HYPERBEAM_URL = "http://localhost:8734";
 
 // Use the authority address advertised by your selected node.
 const HYPERBEAM_AUTHORITY = "<hyperbeam-node-authority>";
@@ -43,7 +43,7 @@ const ao = connect({
 You can retrieve a node's authority address from its metadata endpoint:
 
 ```sh
-curl "https://<hyperbeam-node>/~meta@1.0/info/address"
+curl "http://localhost:8734/~meta@1.0/info/address"
 ```
 
 ## Spawn
@@ -117,7 +117,7 @@ npm install -g https://get_ao.arweave.net
 Connect to a selected node:
 
 ```sh
-aos <process-id> --url https://<hyperbeam-node>
+aos <process-id> --url http://localhost:8734
 ```
 
 Mainnet flags:
@@ -134,7 +134,7 @@ import { connect, createSigner } from "@permaweb/aoconnect";
 
 const ao = connect({
   MODE: "mainnet",
-  URL: "https://<hyperbeam-node>",
+  URL: "http://localhost:8734",
   signer: createSigner(globalThis.arweaveWallet),
 });
 ```

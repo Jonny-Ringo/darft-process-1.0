@@ -48,7 +48,7 @@ For process-to-process messages to be accepted, the recipient process must trust
 - Node.js 20 or newer.
 - A terminal.
 - An Arweave wallet keyfile, or let AOS create one.
-- A HyperBEAM node URL selected from `https://lunar.arweave.net` or another current marketplace/list.
+- A HyperBEAM node URL. Use [your own local node]() or select a public node from `https://lunar.arweave.net` or another current marketplace/list.
 
 ## Install AOS
 
@@ -59,7 +59,7 @@ npm i -g https://get_ao.arweave.net
 ## Create a Process
 
 ```sh
-aos process_name --url https://<hyperbeam-node>
+aos process_name --url http://localhost:8734
 ```
 
 Example:
@@ -73,7 +73,7 @@ Replace `process_name` with a friendly local name for the process, such as `coun
 To use a specific wallet:
 
 ```sh
-aos process_name --wallet ./wallet.json --url https://<hyperbeam-node>
+aos process_name --wallet ./wallet.json --url http://localhost:8734
 ```
 
 ## Create A Counter
@@ -135,7 +135,7 @@ Send({ Target = ao.id, Tags = { Action = "Increment" } })
 Use your selected node and process ID:
 
 ```sh
-curl https://<hyperbeam-node>/<process-id>~process@1.0/compute/counter
+curl http://localhost:8734/<process-id>~process@1.0/compute/counter
 ```
 
 Example:
