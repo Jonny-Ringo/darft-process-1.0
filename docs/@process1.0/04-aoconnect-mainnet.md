@@ -27,7 +27,7 @@ const HYPERBEAM_AUTHORITY = "<hyperbeam-node-authority>";
 
 // Default scheduler from the mainnet release notes.
 const HYPERBEAM_SCHEDULER =
-  "n_XZJhUnmldNFo4dhajoPZWhBXuJk-OcQr5JQ49c4Zo";
+  "your_local_node_address";
 
 // Current AOS module from the mainnet release notes.
 const AOS_MODULE = "ISShJH1ij-hPPt9St5UFFr_8Ys3Kj5cyg7zrMGt7H9s";
