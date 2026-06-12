@@ -17,7 +17,8 @@ The process still mutates state through messages. The difference is that read-fa
 ## Step 1: Connect To HyperBEAM
 
 ```sh
-aos --url https://<hyperbeam-node>
+HYPERBEAM_URL=https://push.forward.computer
+aos --url "$HYPERBEAM_URL"
 ```
 
 The node URL is a deployment choice. Pick a current node from `https://lunar.arweave.net` or another marketplace/listing source.

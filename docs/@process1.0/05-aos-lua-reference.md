@@ -6,32 +6,36 @@ This page covers the AOS essentials used throughout the `process@1.0` examples.
 
 ```sh
 npm i -g https://get_ao.arweave.net
-aos --url https://<hyperbeam-node>
+HYPERBEAM_URL=https://push.forward.computer
+aos --url "$HYPERBEAM_URL"
 ```
 
 Use a wallet:
 
 ```sh
-aos --wallet ./wallet.json --url https://<hyperbeam-node>
+HYPERBEAM_URL=https://push.forward.computer
+aos --wallet ./wallet.json --url "$HYPERBEAM_URL"
 ```
 
 Run a command non-interactively when supported by your AOS version:
 
 ```sh
-aos <process-id> --run "return 1 + 1"
+HYPERBEAM_URL=https://push.forward.computer
+PROCESS_ID=YOUR_PROCESS_ID
+aos "$PROCESS_ID" --url "$HYPERBEAM_URL" --run "return 1 + 1"
 ```
 
 ## Load Code
 
 Load a local Lua file:
 
-```lua
+```text
 .load ./process.lua
 ```
 
 Load a blueprint:
 
-```lua
+```text
 .load-blueprint chat
 ```
 

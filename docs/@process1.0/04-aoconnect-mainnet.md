@@ -20,7 +20,7 @@ const jwk = JSON.parse(fs.readFileSync("wallet.json", "utf-8"));
 
 // Example only. Pick a current node from https://lunar.arweave.net
 // or another marketplace/listing source.
-const HYPERBEAM_URL = "https://<hyperbeam-node>";
+const HYPERBEAM_URL = "https://push.forward.computer";
 
 // Use the authority address advertised by your selected node.
 const HYPERBEAM_AUTHORITY = "<hyperbeam-node-authority>";
@@ -43,7 +43,8 @@ const ao = connect({
 You can retrieve a node's authority address from its metadata endpoint:
 
 ```sh
-curl "https://<hyperbeam-node>/~meta@1.0/info/address"
+HYPERBEAM_URL=https://push.forward.computer
+curl "$HYPERBEAM_URL/~meta@1.0/info/address"
 ```
 
 ## Spawn
@@ -62,7 +63,7 @@ Use dash-separated tag names. Avoid relying on mixed-case tag names such as `Exa
 ## Message
 
 ```js
-const message = await ao.message({
+const slot = await ao.message({
   process,
   data: "1984",
   tags: [{ name: "Example-Tag", value: "Example Value" }],
@@ -74,9 +75,11 @@ const message = await ao.message({
 ```js
 const result = await ao.result({
   process,
-  message,
+  slot,
 });
 ```
+
+In the current mainnet AO Connect flow, `message()` returns a slot by default. Pass that slot into `result({ process, slot })`.
 
 Results can include:
 
@@ -117,12 +120,14 @@ npm install -g https://get_ao.arweave.net
 Connect to a selected node:
 
 ```sh
-aos <process-id> --url https://<hyperbeam-node>
+HYPERBEAM_URL=https://push.forward.computer
+PROCESS_ID=YOUR_PROCESS_ID
+aos "$PROCESS_ID" --url "$HYPERBEAM_URL"
 ```
 
 Mainnet flags:
 
-- `--url`: HyperBEAM node URL. If omitted, AOS defaults to a HyperBEAM mainnet node.
+- `--url`: HyperBEAM node URL. If omitted, AOS defaults to a HyperBEAM mainnet node. Some `aos --help` output documents this path as `--mainnet [mainnet-node-url]`; current mainnet releases also accept `--url`.
 - `--scheduler`: HyperBEAM scheduler address. If omitted, the release-note default is `n_XZJhUnmldNFo4dhajoPZWhBXuJk-OcQr5JQ49c4Zo`.
 
 ## Browser Signer
@@ -134,7 +139,7 @@ import { connect, createSigner } from "@permaweb/aoconnect";
 
 const ao = connect({
   MODE: "mainnet",
-  URL: "https://<hyperbeam-node>",
+  URL: "https://push.forward.computer",
   signer: createSigner(globalThis.arweaveWallet),
 });
 ```

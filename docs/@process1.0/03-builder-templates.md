@@ -4,6 +4,8 @@ These templates can be copied into real processes and adapted around the `proces
 
 ## Token State
 
+This template assumes balances are seeded or a mint handler is added. Do not deploy token code without explicit authorization around minting and privileged balance changes.
+
 ```lua
 Balances = Balances or {}
 TotalSupply = TotalSupply or "0"
@@ -111,7 +113,9 @@ Handlers.add(
 Read latest patched messages:
 
 ```sh
-curl https://<hyperbeam-node>/<process-id>~process@1.0/compute/messages
+HYPERBEAM_URL=https://push.forward.computer
+PROCESS_ID=YOUR_PROCESS_ID
+curl "$HYPERBEAM_URL/$PROCESS_ID~process@1.0/compute/messages"
 ```
 
 ## Frontend Client
@@ -160,11 +164,13 @@ HyperBEAM can resolve external HTTP data through relay-style flows. Keep this be
 table.insert(ao.authorities, "<hyperbeam-node-authority>")
 
 Send({
-  target = ao.id,
+  Target = ao.id,
   ["relay-path"] = "https://arweave.net/info",
   resolve = "~relay@1.0/call"
 })
 ```
+
+Use `Target` for the message destination. Lowercase `target` is treated like message data or tag material by AOS helpers instead of the delivery target.
 
 Use cases:
 
@@ -176,7 +182,7 @@ Use cases:
 
 ## Web Serving
 
-Some HyperBEAM workflows can serve HTML, CSS, or JavaScript from process data. Prefer publishing the content through the [`patch@1.0` device]() and reading it from a `compute` endpoint. Raw state requests through `now` can be finicky across nodes and runtimes.
+Some HyperBEAM workflows can serve HTML, CSS, or JavaScript from process data. Prefer publishing the content through the [`patch@1.0` device](02-state-and-reads.md#patch-device) and reading it from a `compute` endpoint. Raw state requests through `now` can be finicky across nodes and runtimes.
 
 Minimal patched HTML:
 

@@ -4,7 +4,7 @@ HyperBEAM changes the default AO read pattern. Instead of sending dry-run messag
 
 ## Patch Device
 
-The [`patch@1.0` device]() pushes selected process data to HyperBEAM endpoints so it can be discovered and fetched by clients. Each key sent to the patch device becomes readable through the process endpoint.
+The `patch@1.0` device pushes selected process data to HyperBEAM endpoints so it can be discovered and fetched by clients. Each key sent to the patch device becomes readable through the process endpoint.
 
 Patch selected state:
 
@@ -26,7 +26,9 @@ GET /<process-id>~process@1.0/compute/status
 With a node:
 
 ```sh
-curl https://<hyperbeam-node>/<process-id>~process@1.0/compute/counter
+HYPERBEAM_URL=https://push.forward.computer
+PROCESS_ID=YOUR_PROCESS_ID
+curl "$HYPERBEAM_URL/$PROCESS_ID~process@1.0/compute/counter"
 ```
 
 ## Initial Sync
@@ -51,7 +53,7 @@ end
 
 ## Patch After Mutations
 
-Patch state in every handler that changes read-facing data:
+Patch state in every handler that changes read-facing data. This example assumes balances have already been seeded; production token logic should include explicit minting and authorization rules.
 
 ```lua
 Handlers.add(
@@ -65,7 +67,12 @@ Handlers.add(
       return msg.reply({ Error = "Invalid transfer" })
     end
 
-    Balances[msg.From] = tostring((tonumber(Balances[msg.From]) or 0) - amount)
+    local senderBalance = tonumber(Balances[msg.From]) or 0
+    if senderBalance < amount then
+      return msg.reply({ Error = "Insufficient balance" })
+    end
+
+    Balances[msg.From] = tostring(senderBalance - amount)
     Balances[recipient] = tostring((tonumber(Balances[recipient]) or 0) + amount)
 
     Send({
